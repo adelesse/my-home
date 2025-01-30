@@ -1,0 +1,25 @@
+<div>
+  <h2>Lights</h2>
+
+  <p-dataview #dv [value]="lights()">
+    <ng-template #list let-items>
+      <div class="grid grid-cols-12 gap-4 grid-nogutter">
+        @for (light of items; track light.name) {
+
+        <div class="col-span-12" class="col-span-12">
+          <div>
+            {{ light.id }} - {{ light.name }}
+            <p-togglebutton
+              [(ngModel)]="light.state.on"
+              onLabel="On"
+              offLabel="Off"
+              styleClass="w-24"
+              (onChange)="changeLight(light.id, light.state.on)"
+            />
+          </div>
+        </div>
+        }
+      </div>
+    </ng-template>
+  </p-dataview>
+</div>
