@@ -3,11 +3,12 @@ import { ButtonModule } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { Router, RouterModule } from '@angular/router';
+import { TempratureComponent } from "./meteo/temperature/temperature.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [ButtonModule, Menubar, RouterModule],
+  imports: [ButtonModule, Menubar, RouterModule, TempratureComponent],
 })
 export class AppComponent implements OnInit {
   title = 'my-home';

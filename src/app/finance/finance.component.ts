@@ -1,17 +1,93 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { FinanceService } from './finance.service';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
+import { ChartModule } from 'primeng/chart';
+import { Market, MarketDay } from './finance.model';
 
 @Component({
   selector: 'app-finance',
   standalone: true,
   templateUrl: './finance.component.html',
-  imports: [ButtonModule, DataViewModule, FormsModule],
+  imports: [ButtonModule, FormsModule, ChartModule],
 })
 export class FinanceComponent implements OnInit {
-  constructor(private financeService: FinanceService) {}
+  data: any;
 
-  ngOnInit(): void {}
+  options: any;
+
+  constructor(
+    private financeService: FinanceService,
+    private cd: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.financeService.getMarket().subscribe((market: Market) => {
+      this.initChart(market.data);
+    });
+  }
+
+  initChart(datas: MarketDay[]) {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--p-text-color');
+    const textColorSecondary = documentStyle.getPropertyValue(
+      '--p-text-muted-color'
+    );
+    const surfaceBorder = documentStyle.getPropertyValue(
+      '--p-content-border-color'
+    );
+
+    datas.reverse();
+    const labels: string[] = datas.map((d) =>
+      new Date(d.date).toLocaleDateString('fr-FR')
+    );
+    const closeDatas: number[] = datas.map((d) => d.close);
+
+    this.data = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Action Thales (' + closeDatas[closeDatas.length - 1] + ' €)',
+          data: closeDatas,
+          fill: false,
+          borderColor: documentStyle.getPropertyValue('--p-cyan-500'),
+          tension: 0.4,
+        },
+      ],
+    };
+
+    this.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.6,
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor,
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: textColorSecondary,
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false,
+          },
+        },
+        y: {
+          ticks: {
+            color: textColorSecondary,
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false,
+          },
+        },
+      },
+    };
+    this.cd.markForCheck();
+  }
 }

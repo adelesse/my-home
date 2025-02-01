@@ -5,6 +5,7 @@ import { Light } from './light.model';
 import { DataViewModule } from 'primeng/dataview';
 import { ToggleButton } from 'primeng/togglebutton';
 import { FormsModule } from '@angular/forms';
+import { TempratureComponent } from '../meteo/temperature/temperature.component';
 
 @Component({
   selector: 'app-light-list',
