@@ -1,25 +1,64 @@
-<div>
+<div class="lights">
   <h2>Lights</h2>
 
-  <p-dataview #dv [value]="lights()">
-    <ng-template #list let-items>
-      <div class="grid grid-cols-12 gap-4 grid-nogutter">
-        @for (light of items; track light.name) {
-
-        <div class="col-span-12" class="col-span-12">
-          <div>
-            {{ light.id }} - {{ light.name }}
-            <p-togglebutton
-              [(ngModel)]="light.state.on"
-              onLabel="On"
-              offLabel="Off"
-              styleClass="w-24"
-              (onChange)="changeLight(light.id, light.state.on)"
-            />
-          </div>
-        </div>
-        }
-      </div>
+  <p-table [value]="lights()" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>On/Off</th>
+        <th>Luminosité</th>
+        <th>Couleur</th>
+      </tr>
     </ng-template>
-  </p-dataview>
+    <ng-template #body let-light>
+      <tr>
+        <td>{{ light.id }}</td>
+        <td>{{ light.name }}</td>
+        <td>
+          @if(light.state.reachable) {
+          <p-togglebutton
+            [(ngModel)]="light.state.on"
+            onLabel="On"
+            offLabel="Off"
+            styleClass="w-24"
+            (onChange)="changeLight(light.id, light.state.on)"
+            [disabled]="!light.state.reachable"
+          />
+          }
+        </td>
+        <td>
+          @if(light.state.reachable) {
+          <p-slider
+            [(ngModel)]="light.state.bri"
+            styleClass="w-56"
+            [min]="0"
+            [max]="255"
+            (onChange)="updateBrightness(light.id, light.state.bri)"
+          />
+          }
+        </td>
+        <td>
+          @if(light.state.reachable) {
+          <p-colorpicker
+            [(ngModel)]="colorValues[light.id]"
+            (onHide)="updateColor(light.id, colorValues[light.id])"
+            format="rgb"
+            appendTo="body"
+            inputId="cp-rgb"
+          />kk
+          <span>{{
+            "r:" +
+              colorValues[light.id]?.r +
+              " g:" +
+              colorValues[light.id]?.g +
+              " b:" +
+              colorValues[light.id]?.b
+          }}</span>
+
+          }
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

@@ -1,0 +1,13 @@
+{
+  "/api/*": {
+    "target": "https://conso.boris.sh",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Host": "conso.boris.sh",
+      "User-Agent": "github.com/adelesse/my-home",
+      "Access-Control-Allow-Origin": "*"
+    }
+  }
+}
