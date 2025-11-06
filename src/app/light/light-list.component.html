@@ -21,7 +21,7 @@
             [(ngModel)]="light.state.on"
             onLabel="On"
             offLabel="Off"
-            styleClass="w-24"
+            class="w-24"
             (onChange)="changeLight(light.id, light.state.on)"
             [disabled]="!light.state.reachable"
           />
@@ -31,7 +31,7 @@
           @if(light.state.reachable && isBrightnessType(light.type)) {
           <p-slider
             [(ngModel)]="light.state.bri"
-            styleClass="w-56"
+            class="w-56"
             [min]="0"
             [max]="255"
             (onChange)="updateBrightness(light.id, light.state.bri)"
