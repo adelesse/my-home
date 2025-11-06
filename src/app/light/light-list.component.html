@@ -28,7 +28,7 @@
           }
         </td>
         <td>
-          @if(light.state.reachable) {
+          @if(light.state.reachable && isBrightnessType(light.type)) {
           <p-slider
             [(ngModel)]="light.state.bri"
             styleClass="w-56"
@@ -39,23 +39,14 @@
           }
         </td>
         <td>
-          @if(light.state.reachable) {
+          @if(light.state.reachable && isColorType(light.type)) {
           <p-colorpicker
             [(ngModel)]="colorValues[light.id]"
             (onHide)="updateColor(light.id, colorValues[light.id])"
             format="rgb"
             appendTo="body"
             inputId="cp-rgb"
-          />kk
-          <span>{{
-            "r:" +
-              colorValues[light.id]?.r +
-              " g:" +
-              colorValues[light.id]?.g +
-              " b:" +
-              colorValues[light.id]?.b
-          }}</span>
-
+          />
           }
         </td>
       </tr>

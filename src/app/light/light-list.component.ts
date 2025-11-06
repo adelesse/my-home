@@ -63,4 +63,12 @@ export class LightListComponent implements OnInit {
   updateColor(id: string, color: any) {
     this.lightService.updateHSB(id, color);
   }
+
+  isBrightnessType(type: string) {
+    return 'On/Off plug-in unit' !== type;
+  }
+
+  isColorType(type: string) {
+    return 'Extended color light' === type;
+  }
 }
