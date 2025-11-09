@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
-import { MenuItem } from 'primeng/api';
-import { Router, RouterModule } from '@angular/router';
-import { TempratureComponent } from "./meteo/temperature/temperature.component";
+import { TempratureComponent } from './meteo/temperature/temperature.component';
 
 @Component({
   selector: 'app-root',
@@ -45,9 +45,9 @@ export class AppComponent implements OnInit {
         route: '/finance',
       },
       {
-        label: 'Configuration',
-        icon: 'pi pi-list-check',
-        route: '/configuration',
+        label: 'Google',
+        icon: 'pi pi-google',
+        route: '/google',
       },
       {
         label: 'External',
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
           {
             label: 'Dev tools',
             url: 'https://brequet.github.io/dev-tools/',
-          }
+          },
         ],
       },
     ];

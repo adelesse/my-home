@@ -1,6 +1,6 @@
-import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { from, Observable, of, tap } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { Observable, of, tap } from 'rxjs';
 import { LINKY_KEY, LINKY_PRM } from '../secret/secret.config';
 import { EnergyResponse } from './linky.model';
 
@@ -9,8 +9,6 @@ import { EnergyResponse } from './linky.model';
 })
 export class LinkyService {
   constructor(private http: HttpClient) {}
-
-  private apiUrl = 'https://conso.boris.sh/api';
 
   private storageKey = 'linkyCache';
 
@@ -37,7 +35,7 @@ export class LinkyService {
     }`;
     return this.http
       .get<EnergyResponse>(url, {
-        headers: this.getHeaders()
+        headers: this.getHeaders(),
       })
       .pipe(
         tap((result: EnergyResponse) => {

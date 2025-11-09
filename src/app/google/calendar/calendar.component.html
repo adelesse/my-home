@@ -1,0 +1,20 @@
+<p-timeline [value]="events" align="alternate" class="customized-timeline">
+  <ng-template #marker let-event>
+    <span
+      class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm"
+      [style]="{ 'background-color': event.color }"
+    >
+      <i [class]="event.icon"></i>
+    </span>
+  </ng-template>
+  <ng-template #content let-event>
+    <p-card
+      [header]="event.status"
+      [subheader]="getDates(event)"
+    >
+      <p>
+        {{ event.summary }}
+      </p>
+    </p-card>
+  </ng-template>
+</p-timeline>

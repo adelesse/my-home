@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { LinkyService } from './linky.service';
-import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'primeng/chart';
 import { EnergyResponse, IntervalReading } from './linky.model';
+import { LinkyService } from './linky.service';
 
 @Component({
   selector: 'app-linky',
@@ -29,7 +29,6 @@ export class LinkyComponent implements OnInit {
       });
   }
 
-
   initChart(datas: IntervalReading[]) {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--p-text-color');
@@ -43,7 +42,7 @@ export class LinkyComponent implements OnInit {
     const labels: string[] = datas.map((d) =>
       new Date(d.date).toLocaleDateString('fr-FR')
     );
-    const kwhs: number[] = datas.map((d) => (d.value / 1000));
+    const kwhs: number[] = datas.map((d) => d.value / 1000);
 
     this.data = {
       labels: labels,
@@ -51,16 +50,15 @@ export class LinkyComponent implements OnInit {
         {
           label: 'Consomation (' + kwhs[kwhs.length - 1] + ' kWh)',
           data: kwhs,
-          fill: false,
+          backgroundColor: documentStyle.getPropertyValue('--p-cyan-500'),
           borderColor: documentStyle.getPropertyValue('--p-cyan-500'),
-          tension: 0.4,
         },
       ],
     };
 
     this.options = {
       maintainAspectRatio: false,
-      aspectRatio: 0.6,
+      aspectRatio: 0.8,
       plugins: {
         legend: {
           labels: {
@@ -72,6 +70,9 @@ export class LinkyComponent implements OnInit {
         x: {
           ticks: {
             color: textColorSecondary,
+            font: {
+              weight: 500,
+            },
           },
           grid: {
             color: surfaceBorder,
