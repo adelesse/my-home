@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const { google } = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 const session = require('express-session');
 
 const path = require('path');
@@ -12,7 +11,9 @@ app.use(cors({
   credentials: true
 }));
 
+
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../dist/my-home')));
 
 // ----------------------
 // Session
@@ -106,6 +107,13 @@ app.get('/calendar/events', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+// Fallback to index.html for Angular routing
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/my-home/browser/index.html'));
+});
+
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Backend started on http://localhost:${PORT}`));
