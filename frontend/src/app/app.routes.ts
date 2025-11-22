@@ -4,6 +4,7 @@ import { CalendarComponent } from './google/calendar/calendar.component';
 import { LightListComponent } from './light/light-list.component';
 import { LinkyComponent } from './linky/linky.component';
 import { TramComponent } from './tcl/tram/tram.component';
+import { MainComponent } from './main/main.component';
 
 export const routes: Routes = [
   { path: 'lights', component: LightListComponent },
@@ -11,5 +12,5 @@ export const routes: Routes = [
   { path: 'finance', component: FinanceComponent },
   { path: 'google', component: CalendarComponent },
   { path: 'tcl', component: TramComponent },
-  { path: '**', component: LightListComponent },
+  { path: '**', component: MainComponent },
 ];
