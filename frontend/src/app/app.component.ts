@@ -50,6 +50,11 @@ export class AppComponent implements OnInit {
         route: '/google',
       },
       {
+        label: 'TCL',
+        icon: 'pi pi-truck',
+        route: '/tcl',
+      },
+      {
         label: 'External',
         icon: 'pi pi-link',
         items: [

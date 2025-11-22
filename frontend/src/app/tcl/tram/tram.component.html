@@ -1,0 +1,11 @@
+<div>
+  @for (traffic of traffic(); track idx; let idx = $index) {
+  <div>
+    Destination : {{ traffic.destination }}
+
+    @for (schedule of traffic.schedules; track idx; let idx = $index) {
+    <p><span class="pi pi-clock"></span> {{ schedule.dateTime | timeTo }}</p>
+    }
+  </div>
+  }
+</div>

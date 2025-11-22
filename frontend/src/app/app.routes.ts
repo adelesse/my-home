@@ -3,11 +3,13 @@ import { FinanceComponent } from './finance/finance.component';
 import { CalendarComponent } from './google/calendar/calendar.component';
 import { LightListComponent } from './light/light-list.component';
 import { LinkyComponent } from './linky/linky.component';
+import { TramComponent } from './tcl/tram/tram.component';
 
 export const routes: Routes = [
   { path: 'lights', component: LightListComponent },
   { path: 'linky', component: LinkyComponent },
   { path: 'finance', component: FinanceComponent },
   { path: 'google', component: CalendarComponent },
+  { path: 'tcl', component: TramComponent },
   { path: '**', component: LightListComponent },
 ];
