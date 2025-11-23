@@ -1,0 +1,21 @@
+<input type="file" webkitdirectory (change)="onFolderSelected($event)" />
+
+<hr />
+
+@if (videos().length === 0) {
+<p>Aucune vidéo trouvée.</p>
+}
+
+<ul>
+  @for (v of videos(); track $index) {
+  <li>
+    <button (click)="play(v.url)">▶️ {{ v.file.name }}</button>
+  </li>
+  }
+</ul>
+
+<hr />
+
+@if (selectedVideoUrl()) {
+<video width="640" height="360" controls [src]="selectedVideoUrl()"></video>
+}

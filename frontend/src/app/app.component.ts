@@ -3,13 +3,19 @@ import { Router, RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
+import { ClockComponent } from './clock/clock.component';
 import { TempratureComponent } from './meteo/temperature/temperature.component';
-import { ClockComponent } from "./clock/clock.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [ButtonModule, Menubar, RouterModule, TempratureComponent, ClockComponent],
+  imports: [
+    ButtonModule,
+    Menubar,
+    RouterModule,
+    TempratureComponent,
+    ClockComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   title = 'my-home';
@@ -54,6 +60,11 @@ export class AppComponent implements OnInit {
         label: 'TCL',
         icon: 'pi pi-truck',
         route: '/tcl',
+      },
+      {
+        label: 'Videos',
+        icon: 'pi pi-video',
+        route: '/video',
       },
       {
         label: 'External',
