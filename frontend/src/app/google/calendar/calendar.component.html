@@ -1,17 +1,10 @@
-<p-timeline [value]="events" align="alternate" class="customized-timeline">
-  <ng-template #marker let-event>
-    <span
-      class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm"
-      [style]="{ 'background-color': event.color }"
-    >
-      <i [class]="event.icon"></i>
-    </span>
+<p-timeline [value]="events">
+  <ng-template #opposite let-event>
+    <small class="text-surface-500 dark:text-surface-400">{{
+      getDates(event)
+    }}</small>
   </ng-template>
   <ng-template #content let-event>
-    <p-card [header]="event.summary" [subheader]="getDates(event)">
-      <p>
-        {{ event.location }}
-      </p>
-    </p-card>
+    {{ event.summary }}
   </ng-template>
 </p-timeline>
