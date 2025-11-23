@@ -1,6 +1,7 @@
 .masonry {
     column-count: 3;
     column-gap: 1rem;
+    margin-top: 4px;
 }
 
 .masonry>* {

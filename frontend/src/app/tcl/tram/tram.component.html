@@ -1,13 +1,16 @@
 <div>
-  <h2>Tram T4</h2>
-
   @for (traffic of traffic(); track idx; let idx = $index) {
   <div>
     <img src="assets/img/T4.svg" alt="TCL T4 Logo" class="tram-logo" />
     {{ traffic.destination }}
 
-    @for (schedule of traffic.schedules; track idx; let idx = $index) {
-    <p><span class="pi pi-clock"></span> {{ schedule.dateTime | timeTo }}</p>
+    @for (schedule of traffic.schedules; track idx; let idx = $index) { @let
+    minutes = schedule.dateTime | timeTo;
+
+    <p>
+      <span class="pi pi-clock" [class.tram-0]="minutes === '0 min'"></span>
+      {{ minutes }}
+    </p>
     }
   </div>
   }

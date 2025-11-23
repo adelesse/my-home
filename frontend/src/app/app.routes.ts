@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
+import { LightListComponent } from './energie/light/light-list.component';
 import { FinanceComponent } from './finance/finance.component';
 import { CalendarComponent } from './google/calendar/calendar.component';
-import { LightListComponent } from './light/light-list.component';
-import { LinkyComponent } from './linky/linky.component';
 import { MainComponent } from './main/main.component';
 import { TramComponent } from './tcl/tram/tram.component';
 import { VideoComponent } from './video/video.component';
+import { LinkyComponent } from './energie/linky/linky.component';
 
 export const routes: Routes = [
   { path: 'lights', component: LightListComponent },

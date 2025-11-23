@@ -1,3 +1,19 @@
 .tram-logo {
   width:30px;
 }
+
+.tram-0 {
+  animation: blink-soft 1s infinite;
+}
+
+@keyframes blink-soft {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+}

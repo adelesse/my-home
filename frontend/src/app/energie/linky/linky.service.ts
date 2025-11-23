@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
-import { LINKY_KEY, LINKY_PRM } from '../secret/secret.config';
+import { LINKY_KEY, LINKY_PRM } from '../../secret/secret.config';
 import { EnergyResponse } from './linky.model';
 
 @Injectable({

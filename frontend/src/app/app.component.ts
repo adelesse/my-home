@@ -28,9 +28,14 @@ export class AppComponent implements OnInit {
       {
         label: 'Home',
         icon: 'pi pi-home',
+        route: '/main',
+      },
+      {
+        label: 'Énergie',
+        icon: 'pi pi-sun',
         items: [
           {
-            label: 'Lights',
+            label: 'Lumières',
             icon: 'pi pi-lightbulb',
             route: '/lights',
           },
@@ -62,12 +67,12 @@ export class AppComponent implements OnInit {
         route: '/tcl',
       },
       {
-        label: 'Videos',
+        label: 'Vidéos',
         icon: 'pi pi-video',
         route: '/video',
       },
       {
-        label: 'External',
+        label: 'Externe',
         icon: 'pi pi-link',
         items: [
           {

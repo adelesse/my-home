@@ -18,8 +18,12 @@
     </div>
     }
   </ng-template>
-  <app-clock></app-clock>
-  <app-temperature></app-temperature>
+  <ng-template #end>
+    <div class="flex items-center gap-2">
+      <div><app-clock></app-clock></div>
+      <div><app-temperature></app-temperature></div>
+    </div>
+  </ng-template>
 </p-menubar>
 
 <router-outlet />
