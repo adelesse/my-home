@@ -6,13 +6,43 @@
 <p>Aucune vidéo trouvée.</p>
 }
 
-<ul>
-  @for (v of videos(); track $index) {
-  <li>
-    <button (click)="play(v.url)">▶️ {{ v.file.name }}</button>
-  </li>
-  }
-</ul>
+<p-carousel
+  [value]="videos()"
+  [numVisible]="4"
+  [numScroll]="1"
+  [responsiveOptions]="responsiveOptions"
+>
+  <ng-template let-video #item>
+    <div
+      (click)="play(video.url)"
+      class="border border-surface-200 dark:border-surface-700 rounded m-2 p-4"
+    >
+      <div
+        class="mb-4"
+        pTooltip="{{ video.movie?.Plot }}"
+        tooltipPosition="bottom"
+        placeholder="Bottom"
+      >
+        <div class="relative mx-auto">
+          <img
+            src="{{ video.movie?.Poster }}"
+            alt="Affiche de {{ video.titleInfos.title }}"
+            class="w-full rounded-border"
+          />
+        </div>
+      </div>
+      <div class="mb-4 font-medium">{{ video.titleInfos.title }}</div>
+      <div class="flex justify-between items-center">
+        @if(video.titleInfos.season && video.titleInfos.episode) {
+        <span>
+          (Saison {{ video.titleInfos.season }}, épisode
+          {{ video.titleInfos.episode }})
+        </span>
+        }
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
 
 <hr />
 

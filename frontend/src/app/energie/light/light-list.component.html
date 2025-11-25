@@ -2,8 +2,7 @@
   <p-table [value]="lights()" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template #header>
       <tr>
-        <th>Id</th>
-        <th>Nom</th>
+        <th>Id - Nom</th>
         <th>On/Off</th>
         <th>Luminosité</th>
         <th>Couleur</th>
@@ -11,8 +10,7 @@
     </ng-template>
     <ng-template #body let-light>
       <tr>
-        <td>{{ light.id }}</td>
-        <td>{{ light.name }}</td>
+        <td>{{ light.id }} - {{ light.name }}</td>
         <td>
           @if(light.state.reachable) {
           <p-togglebutton
