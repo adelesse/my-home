@@ -56,7 +56,7 @@ export interface GoogleEvent {
       responseStatus?: string;
       comment?: string;
       additionalGuests?: number;
-    }
+    },
   ];
   attendeesOmitted?: boolean;
   hangoutLink?: string;
@@ -80,7 +80,7 @@ export interface GoogleEvent {
         meetingCode?: string;
         passcode?: string;
         password?: string;
-      }
+      },
     ];
     conferenceSolution?: {
       key?: {
@@ -114,7 +114,7 @@ export interface GoogleEvent {
       {
         method?: string;
         minutes?: number;
-      }
+      },
     ];
   };
   source?: {
@@ -151,9 +151,9 @@ export interface GoogleEvent {
       mimeType?: string;
       iconLink?: string;
       fileId?: string;
-    }
+    },
   ];
-  
+
   birthdayProperties?: {
     contact?: string;
     type?: string;

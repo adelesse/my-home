@@ -38,7 +38,6 @@ export class CalendarComponent {
     this.googleService.getEvents().subscribe({
       next: (events: GoogleEvent[]) => {
         this.events = events;
-        console.log('Events loaded:', this.events);
       },
       error: (error) => {
         this.googleService.login(window.location.href);

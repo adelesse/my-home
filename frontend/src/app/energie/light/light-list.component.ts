@@ -13,14 +13,7 @@ import { ColorPicker } from 'primeng/colorpicker';
   standalone: true,
   templateUrl: './light-list.component.html',
   styleUrls: ['./light-list.component.css'],
-  imports: [
-    ButtonModule,
-    TableModule,
-    SliderModule,
-    ToggleButton,
-    ColorPicker,
-    FormsModule,
-  ],
+  imports: [ButtonModule, TableModule, SliderModule, ToggleButton, ColorPicker, FormsModule],
 })
 export class LightListComponent implements OnInit {
   lights = signal<Light[]>([]);

@@ -1,5 +1,5 @@
 .tram-logo {
-  width:30px;
+  width: 30px;
 }
 
 .tram-0 {
@@ -7,7 +7,6 @@
 }
 
 @keyframes blink-soft {
-
   0%,
   100% {
     opacity: 1;

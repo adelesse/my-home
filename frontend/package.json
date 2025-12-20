@@ -8,7 +8,9 @@
     "build:frontend": "ng build --configuration production",
     "build:backend": "cd backend && npm install",
     "build": "npm run build:frontend && npm run build:backend",
-    "start": "cd backend && node server.js"
+    "start": "cd backend && node server.js",
+    "format": "prettier --write \"src/**/*.{ts,html,css,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,html,css,json}\""
   },
   "private": true,
   "dependencies": {
@@ -40,6 +42,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.7.4",
     "typescript": "~5.9.3"
   }
 }

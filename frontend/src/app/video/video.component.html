@@ -3,7 +3,7 @@
 <hr />
 
 @if (videos().length === 0) {
-<p>Aucune vidéo trouvée.</p>
+  <p>Aucune vidéo trouvée.</p>
 }
 
 <p-carousel
@@ -33,11 +33,10 @@
       </div>
       <div class="mb-4 font-medium">{{ video.titleInfos.title }}</div>
       <div class="flex justify-between items-center">
-        @if(video.titleInfos.season && video.titleInfos.episode) {
-        <span>
-          (Saison {{ video.titleInfos.season }}, épisode
-          {{ video.titleInfos.episode }})
-        </span>
+        @if (video.titleInfos.season && video.titleInfos.episode) {
+          <span>
+            (Saison {{ video.titleInfos.season }}, épisode {{ video.titleInfos.episode }})
+          </span>
         }
       </div>
     </div>
@@ -47,5 +46,5 @@
 <hr />
 
 @if (selectedVideoUrl()) {
-<video width="640" height="360" controls [src]="selectedVideoUrl()"></video>
+  <video width="640" height="360" controls [src]="selectedVideoUrl()"></video>
 }

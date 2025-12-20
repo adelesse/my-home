@@ -1,8 +1,6 @@
 <p-timeline [value]="events">
   <ng-template #opposite let-event>
-    <small class="text-surface-500 dark:text-surface-400">{{
-      getDates(event)
-    }}</small>
+    <small class="text-surface-500 dark:text-surface-400">{{ getDates(event) }}</small>
   </ng-template>
   <ng-template #content let-event>
     {{ event.summary }}

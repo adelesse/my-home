@@ -10,7 +10,7 @@ export class TclService {
   constructor(private http: HttpClient) {}
 
   private apiUrl =
-    'https://carte-interactive.tcl.fr/api/interface/tcl/next-trips/areas/stop_area%3ASYTNEX%3Achouette%3AStopArea%3Aecdcb28e-a083-4bfc-b8d1-68593ee0cc57%3ALOC';
+    'https://carte-interactive.tcl.fr/api/interface/tcl/next-trips/stops/stop_point%3ASYTNEX%3A45863/line%3ASYTNEX%3AT4/forward';
 
   getArchivesDepartementales(): Observable<TrafficResponse> {
     return this.http.get<TrafficResponse>(this.apiUrl);

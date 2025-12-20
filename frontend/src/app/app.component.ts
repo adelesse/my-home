@@ -4,17 +4,20 @@ import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
 import { ClockComponent } from './clock/clock.component';
+import { MailComponent } from './google/mail/mail.component';
 import { TempratureComponent } from './meteo/temperature/temperature.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
   imports: [
     ButtonModule,
     Menubar,
     RouterModule,
     TempratureComponent,
     ClockComponent,
+    MailComponent,
   ],
 })
 export class AppComponent implements OnInit {

@@ -17,9 +17,7 @@ export class TempratureComponent implements OnInit {
 
   ngOnInit(): void {
     this.meteoService.getCurrentMeteo().subscribe((meteo: WeatherData) => {
-      this.temperature.set(
-        meteo.current.temperature_2m + ' ' + meteo.current_units.temperature_2m
-      );
+      this.temperature.set(meteo.current.temperature_2m + ' ' + meteo.current_units.temperature_2m);
     });
   }
 }

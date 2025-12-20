@@ -12,9 +12,7 @@ export class FinanceService {
   cacheService = inject(CacheService);
 
   private apiUrl =
-    'http://api.marketstack.com/v2/eod?access_key=' +
-    FINANCE_KEY +
-    '&symbols=HO.XPAR';
+    'http://api.marketstack.com/v2/eod?access_key=' + FINANCE_KEY + '&symbols=HO.XPAR';
 
   private storageKey = 'marketCache';
 

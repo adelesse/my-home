@@ -21,4 +21,11 @@ export class GoogleService {
       withCredentials: true,
     });
   }
+
+  // Récupérer les événements du calendrier
+  countMails(): Observable<number> {
+    return this.http.get<number>(`${this.backendUrl}/mail/count`, {
+      withCredentials: true,
+    });
+  }
 }

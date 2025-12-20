@@ -30,9 +30,7 @@ export class LightService {
   }
 
   updateBrightness(id: string, brightness: number) {
-    this.http
-      .put(this.apiUrl + '/' + id + '/state', { bri: brightness })
-      .subscribe();
+    this.http.put(this.apiUrl + '/' + id + '/state', { bri: brightness }).subscribe();
   }
 
   updateHSB(id: string, color: any) {
@@ -52,9 +50,7 @@ export class LightService {
     const normalizedToOne = [color.r / 255, color.g / 255, color.b / 255];
 
     const applyGammaCorrection = (value: number): number => {
-      return value > 0.04045
-        ? Math.pow((value + 0.055) / (1.0 + 0.055), 2.4)
-        : value / 12.92;
+      return value > 0.04045 ? Math.pow((value + 0.055) / (1.0 + 0.055), 2.4) : value / 12.92;
     };
 
     const red = applyGammaCorrection(normalizedToOne[0]);
@@ -91,9 +87,7 @@ export class LightService {
 
     // Appliquer la correction gamma inverse
     const applyInverseGammaCorrection = (value: number): number => {
-      return value <= 0.0031308
-        ? value * 12.92
-        : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
+      return value <= 0.0031308 ? value * 12.92 : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
     };
 
     r = applyInverseGammaCorrection(r);

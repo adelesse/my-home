@@ -22,26 +22,18 @@ export class LinkyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.linkyService
-      .getLinkyData()
-      .subscribe((energyResponse: EnergyResponse) => {
-        this.initChart(energyResponse.interval_reading);
-      });
+    this.linkyService.getLinkyData().subscribe((energyResponse: EnergyResponse) => {
+      this.initChart(energyResponse.interval_reading);
+    });
   }
 
   initChart(datas: IntervalReading[]) {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--p-text-color');
-    const textColorSecondary = documentStyle.getPropertyValue(
-      '--p-text-muted-color'
-    );
-    const surfaceBorder = documentStyle.getPropertyValue(
-      '--p-content-border-color'
-    );
+    const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
+    const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
 
-    const labels: string[] = datas.map((d) =>
-      new Date(d.date).toLocaleDateString('fr-FR')
-    );
+    const labels: string[] = datas.map((d) => new Date(d.date).toLocaleDateString('fr-FR'));
     const kwhs: number[] = datas.map((d) => d.value / 1000);
 
     this.data = {

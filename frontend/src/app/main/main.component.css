@@ -1,18 +1,18 @@
 .masonry {
-    column-count: 3;
-    column-gap: 1rem;
-    margin-top: 4px;
+  column-count: 3;
+  column-gap: 1rem;
+  margin-top: 4px;
 }
 
-.masonry>* {
-    display: block;
-    width: 100%;
-    break-inside: avoid;
-    margin-bottom: 1rem;
+.masonry > * {
+  display: block;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 700px) {
-    .masonry {
-        column-count: 1;
-    }
+  .masonry {
+    column-count: 1;
+  }
 }

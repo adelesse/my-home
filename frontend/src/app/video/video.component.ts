@@ -1,11 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
-import { DefaultParserResult, Parser, addDefaults } from 'parse-torrent-title';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { addDefaults, DefaultParserResult, Parser } from 'parse-torrent-title';
 import { Carousel } from 'primeng/carousel';
 import { Tooltip } from 'primeng/tooltip';
 import { forkJoin, map, of } from 'rxjs';
 import { CacheService } from '../shared/cache.service';
-import { VideoService } from './video.service';
 import { Movie } from './video.model';
+import { VideoService } from './video.service';
 
 @Component({
   selector: 'app-video',
@@ -13,11 +13,10 @@ import { Movie } from './video.model';
   templateUrl: './video.component.html',
   styleUrl: './video.component.css',
 })
-export class VideoComponent {
+export class VideoComponent implements OnInit {
   cacheService = inject(CacheService);
   videos = signal<
     {
-      file: File;
       url: string;
       titleInfos: DefaultParserResult;
       movie: Movie;
@@ -47,17 +46,30 @@ export class VideoComponent {
       numScroll: 1,
     },
   ];
+  readonly ABSOLUTE_SERVER_URL = 'http://localhost:3000';
+
+  ngOnInit() {
+    this.loadDefaultVideos();
+  }
+
+  loadDefaultVideos() {
+    this.videoService.getDefaultVideos().subscribe((files) => {
+      this.loadVideosFromFiles(files);
+    });
+  }
 
   onFolderSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files) return;
 
+    const files = Array.from(input.files).filter((f) => f.type.startsWith('video/'));
+
+    this.loadVideosFromFiles(files);
+  }
+
+  private loadVideosFromFiles(files: (File | { name: string; url: string })[]) {
     const parser = new Parser<DefaultParserResult>();
     addDefaults(parser);
-
-    const files = Array.from(input.files).filter((f) =>
-      f.type.startsWith('video/')
-    );
 
     const videoFiles$ = forkJoin(
       files.map((file) => {
@@ -78,8 +90,7 @@ export class VideoComponent {
 
         return movie$.pipe(
           map((movie) => ({
-            file,
-            url: URL.createObjectURL(file),
+            url: 'url' in file ? this.ABSOLUTE_SERVER_URL + file.url : URL.createObjectURL(file),
             titleInfos: parsed,
             movie,
           }))

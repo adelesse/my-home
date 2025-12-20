@@ -12,6 +12,10 @@ export class VideoService {
 
   private apiUrl = 'https://www.omdbapi.com/?apikey=';
 
+  getDefaultVideos() {
+    return this.http.get<any[]>('http://localhost:3000/api/videos');
+  }
+
   getMovie(name: string): Observable<Movie> {
     return this.http.get<Movie>(this.apiUrl + OMDB_API_KEY + '&t=' + name);
   }

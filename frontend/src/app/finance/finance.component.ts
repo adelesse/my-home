@@ -31,17 +31,11 @@ export class FinanceComponent implements OnInit {
   initChart(datas: MarketDay[]) {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--p-text-color');
-    const textColorSecondary = documentStyle.getPropertyValue(
-      '--p-text-muted-color'
-    );
-    const surfaceBorder = documentStyle.getPropertyValue(
-      '--p-content-border-color'
-    );
+    const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
+    const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
 
     datas.reverse();
-    const labels: string[] = datas.map((d) =>
-      new Date(d.date).toLocaleDateString('fr-FR')
-    );
+    const labels: string[] = datas.map((d) => new Date(d.date).toLocaleDateString('fr-FR'));
     const closeDatas: number[] = datas.map((d) => d.close);
 
     this.data = {

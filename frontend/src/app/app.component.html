@@ -1,27 +1,28 @@
-<p-menubar [model]="items">
+<p-menubar [model]="items" class="app-component">
   <ng-template #item let-item>
     @if (item.route) {
-    <a [routerLink]="item.route" class="p-menubar-item-link">
-      <span [class]="item.icon"></span>
-      <span class="ml-2">{{ item.label }}</span>
-    </a>
+      <a [routerLink]="item.route" class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
     } @else if (item.url) {
-    <a [href]="item.url" class="p-menubar-item-link">
-      <span [class]="item.icon"></span>
-      <span class="ml-2">{{ item.label }}</span>
-    </a>
+      <a [href]="item.url" class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
     } @else {
-    <div class="p-menubar-item-link">
-      <span [class]="item.icon"></span>
-      <span class="ml-2">{{ item.label }}</span>
-      <span class="pi pi-fw pi-angle-down ml-2"></span>
-    </div>
+      <div class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+        <span class="pi pi-fw pi-angle-down ml-2"></span>
+      </div>
     }
   </ng-template>
   <ng-template #end>
-    <div class="flex items-center gap-2">
-      <div><app-clock></app-clock></div>
-      <div><app-temperature></app-temperature></div>
+    <div class="app-component-end">
+      <app-mail></app-mail>
+      <app-clock></app-clock>
+      <app-temperature></app-temperature>
     </div>
   </ng-template>
 </p-menubar>

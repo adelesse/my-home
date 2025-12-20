@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { google } = require('googleapis');
 const session = require('express-session');
-
+const fs = require('fs');
 const path = require('path');
 
 const app = express();
@@ -29,7 +29,7 @@ app.use(session({
 // Credentials Google
 // ----------------------
 const CREDENTIALS_PATH = path.join(process.cwd(), 'secret/google.config.json');
-const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly','https://www.googleapis.com/auth/gmail.readonly'];
 
 const credentials = require(CREDENTIALS_PATH);
 const { client_id, client_secret, redirect_uris } = credentials.installed;
@@ -108,6 +108,52 @@ app.get('/calendar/events', async (req, res) => {
   }
 });
 
+app.get('/mail/count', async (req, res) => {
+  try {
+    console.log('Fetching Gmail messages');
+
+    if (!req.session.tokens) {
+      console.log('No tokens found in session');
+      return res.status(401).json({ error: 'Not authenticated' });
+    }
+
+    const oauth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+    console.log('Tokens in session:', req.session.tokens);
+    oauth2Client.setCredentials(req.session.tokens);
+
+    const gmail = google.gmail({version: 'v1', auth: oauth2Client});
+
+
+    const label = await gmail.users.labels.get({
+      userId: 'me',
+      id: 'INBOX'
+    });
+
+    res.json(label.data.messagesUnread ?? 0);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+const VIDEO_FOLDER = "D:/Films";
+app.get('/api/videos', (req, res) => {
+  fs.readdir(VIDEO_FOLDER, (err, files) => {
+    if (err) return res.status(500).send(err);
+
+    const videoFiles = files.filter(f =>
+      f.toLowerCase().match(/\.(mp4|mkv|avi|mov)$/)
+    );
+
+    const results = videoFiles.map(file => ({
+      name: file,
+      url: `/videos/${encodeURIComponent(file)}`
+    }));
+
+    res.json(results);
+  });
+});
+app.use('/videos', express.static(VIDEO_FOLDER));
 
 // Fallback to index.html for Angular routing
 app.get(/.*/, (req, res) => {

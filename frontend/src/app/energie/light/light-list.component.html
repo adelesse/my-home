@@ -12,37 +12,37 @@
       <tr>
         <td>{{ light.id }} - {{ light.name }}</td>
         <td>
-          @if(light.state.reachable) {
-          <p-togglebutton
-            [(ngModel)]="light.state.on"
-            onLabel="On"
-            offLabel="Off"
-            class="w-24"
-            (onChange)="changeLight(light.id, light.state.on)"
-            [disabled]="!light.state.reachable"
-          />
+          @if (light.state.reachable) {
+            <p-togglebutton
+              [(ngModel)]="light.state.on"
+              onLabel="On"
+              offLabel="Off"
+              class="w-24"
+              (onChange)="changeLight(light.id, light.state.on)"
+              [disabled]="!light.state.reachable"
+            />
           }
         </td>
         <td>
-          @if(light.state.reachable && isBrightnessType(light.type)) {
-          <p-slider
-            [(ngModel)]="light.state.bri"
-            class="w-56"
-            [min]="0"
-            [max]="255"
-            (onChange)="updateBrightness(light.id, light.state.bri)"
-          />
+          @if (light.state.reachable && isBrightnessType(light.type)) {
+            <p-slider
+              [(ngModel)]="light.state.bri"
+              class="w-56"
+              [min]="0"
+              [max]="255"
+              (onChange)="updateBrightness(light.id, light.state.bri)"
+            />
           }
         </td>
         <td>
-          @if(light.state.reachable && isColorType(light.type)) {
-          <p-colorpicker
-            [(ngModel)]="colorValues[light.id]"
-            (onHide)="updateColor(light.id, colorValues[light.id])"
-            format="rgb"
-            appendTo="body"
-            inputId="cp-rgb"
-          />
+          @if (light.state.reachable && isColorType(light.type)) {
+            <p-colorpicker
+              [(ngModel)]="colorValues[light.id]"
+              (onHide)="updateColor(light.id, colorValues[light.id])"
+              format="rgb"
+              appendTo="body"
+              inputId="cp-rgb"
+            />
           }
         </td>
       </tr>
