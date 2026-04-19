@@ -45,3 +45,11 @@ Thumbs.db
 node_modules/
 secret/
 secret.config.ts
+
+# Installateur
+dist-installer/
+*.exe
+
+# Service daemon files
+backend/daemon/
+*.log

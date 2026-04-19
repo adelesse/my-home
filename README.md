@@ -85,20 +85,21 @@ L'application sera accessible sur `http://localhost:3000`
 
 ## ⚙️ Configuration
 
-### Secrets Frontend
-
-Créer `frontend/src/app/secret/secret.config.ts` :
-
-```typescript
-export const FINANCE_KEY = 'votre_cle_marketstack';
-export const LINKY_KEY = 'votre_token_jwt_enedis';
-export const LINKY_PRM = 'votre_numero_prm';
-export const OMDB_API_KEY = 'votre_cle_omdb';
-```
-
 ### Secrets Backend
 
-Créer `backend/secret/google.config.json` (OAuth 2.0) :
+Tous les secrets et clés API sont centralisés côté backend.
+
+**Créer `backend/secret/api.config.json`** :
+
+```json
+{
+  "FINANCE_KEY": "votre_cle_marketstack",
+  "LINKY_KEY": "votre_token_jwt_enedis",
+  "LINKY_PRM": "votre_numero_prm"
+}
+```
+
+**Créer `backend/secret/google.config.json`** (OAuth 2.0) :
 
 ```json
 {
@@ -145,7 +146,7 @@ my-home/
 │   └── src/proxy.conf.json
 ├── backend/           # Express.js
 │   ├── server.js      # API + OAuth + Serveur statique
-│   └── secret/        # Credentials Google (non versionné)
+│   └── secret/        # Credentials (non versionné)
 └── .github/
     └── copilot-instructions.md
 ```
@@ -204,7 +205,26 @@ Configuration Prettier incluse (`.prettierrc`)
 - express-session (OAuth)
 - CORS
 
-## 🔒 Sécurité
+## � Installateur Windows
+
+Pour créer un fichier d'installation `.exe` professionnel qui installe automatiquement My Home en tant que service Windows, consultez [INSTALLER-README.md](INSTALLER-README.md).
+
+**Création rapide** :
+
+```powershell
+.\installer\build-installer.ps1
+```
+
+L'installateur généré :
+
+- ✅ Installe dans Program Files
+- ✅ Vérifie Node.js (télécharge si absent)
+- ✅ Crée le service Windows automatiquement
+- ✅ Démarre au boot
+- ✅ Désinstallation complète intégrée
+- 🌐 http://localhost:3000
+
+## �🔒 Sécurité
 
 - **OAuth 2.0** : Session-based pour Google APIs
 - **CORS** : Restreint à `http://localhost:4200` en dev
