@@ -6,10 +6,10 @@ import { GoogleEvent } from './google.model';
 @Injectable({ providedIn: 'root' })
 export class GoogleService {
   http = inject(HttpClient);
-  private backendUrl = 'http://localhost:3000';
+  private backendUrl = window.location.origin;
 
   // Redirection vers le login Google
-  login(redirectUrl: string = 'http://localhost:4200/calendar'): void {
+  login(redirectUrl: string = `${window.location.origin}/calendar`): void {
     window.location.href = `${
       this.backendUrl
     }/auth/google?redirect=${encodeURIComponent(redirectUrl)}`;

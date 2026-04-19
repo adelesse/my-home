@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
-import { LINKY_KEY, LINKY_PRM } from '../../secret/secret.config';
+import { LINKY_KEY } from '../../secret/secret.config';
 import { CacheService } from '../../shared/cache.service';
 import { EnergyResponse } from './linky.model';
 
@@ -21,24 +21,13 @@ export class LinkyService {
       return of(data);
     }
 
-    const now = new Date();
-    const dateMoins30Jours = new Date();
-    dateMoins30Jours.setDate(dateMoins30Jours.getDate() - 7);
+    const url = `${window.location.origin}/api/linky`;
 
-    const formattedEndDate = dateMoins30Jours.toISOString().split('T')[0]; // YYYY-MM-DD
-    const url = `api/daily_consumption?prm=${LINKY_PRM}&start=${formattedEndDate}&end=${
-      now.toISOString().split('T')[0]
-    }`;
-
-    return this.http
-      .get<EnergyResponse>(url, {
-        headers: this.getHeaders(),
+    return this.http.get<EnergyResponse>(url).pipe(
+      tap((result: EnergyResponse) => {
+        this.cacheService.set(this.storageKey, result, 24);
       })
-      .pipe(
-        tap((result: EnergyResponse) => {
-          this.cacheService.set(this.storageKey, result, 24);
-        })
-      );
+    );
   }
 
   private getHeaders(): HttpHeaders {

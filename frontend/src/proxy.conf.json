@@ -1,13 +1,32 @@
 {
   "/api/*": {
-    "target": "https://conso.boris.sh",
+    "target": "http://localhost:3000",
     "secure": false,
     "changeOrigin": true,
-    "logLevel": "debug",
-    "headers": {
-      "Host": "conso.boris.sh",
-      "User-Agent": "github.com/adelesse/my-home",
-      "Access-Control-Allow-Origin": "*"
-    }
+    "logLevel": "debug"
+  },
+  "/auth/*": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/calendar/*": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/mail/*": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/videos/*": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }

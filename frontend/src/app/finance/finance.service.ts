@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
-import { FINANCE_KEY } from '../secret/secret.config';
 import { CacheService } from '../shared/cache.service';
 import { Market } from './finance.model';
 @Injectable({
@@ -11,8 +10,7 @@ export class FinanceService {
   http = inject(HttpClient);
   cacheService = inject(CacheService);
 
-  private apiUrl =
-    'http://api.marketstack.com/v2/eod?access_key=' + FINANCE_KEY + '&symbols=HO.XPAR';
+  private apiUrl = `${window.location.origin}/api/finance`;
 
   private storageKey = 'marketCache';
 
