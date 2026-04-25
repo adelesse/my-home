@@ -1,19 +1,28 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { LightService } from './light.service';
-import { ButtonModule } from 'primeng/button';
-import { Light } from './light.model';
-import { ToggleButton } from 'primeng/togglebutton';
 import { FormsModule } from '@angular/forms';
-import { TableModule } from 'primeng/table';
-import { SliderModule } from 'primeng/slider';
+import { ButtonModule } from 'primeng/button';
 import { ColorPicker } from 'primeng/colorpicker';
+import { KnobModule } from 'primeng/knob';
+import { SliderModule } from 'primeng/slider';
+import { TableModule } from 'primeng/table';
+import { ToggleButton } from 'primeng/togglebutton';
+import { Light } from './light.model';
+import { LightService } from './light.service';
 
 @Component({
   selector: 'app-light-list',
   standalone: true,
   templateUrl: './light-list.component.html',
   styleUrls: ['./light-list.component.css'],
-  imports: [ButtonModule, TableModule, SliderModule, ToggleButton, ColorPicker, FormsModule],
+  imports: [
+    ButtonModule,
+    TableModule,
+    SliderModule,
+    KnobModule,
+    ToggleButton,
+    ColorPicker,
+    FormsModule,
+  ],
 })
 export class LightListComponent implements OnInit {
   lights = signal<Light[]>([]);
@@ -47,6 +56,11 @@ export class LightListComponent implements OnInit {
 
   changeLight(id: string, state: boolean) {
     this.lightService.changeState(id, state);
+  }
+
+  brightnessTemplate(value: number): string {
+    const percent = Math.round((value / 255) * 100);
+    return `${percent} %`;
   }
 
   updateBrightness(id: string, brightness: number) {

@@ -6,7 +6,7 @@
         <span class="ml-2">{{ item.label }}</span>
       </a>
     } @else if (item.url) {
-      <a [href]="item.url" class="p-menubar-item-link">
+      <a [href]="item.url" [attr.target]="item.target || null" class="p-menubar-item-link">
         <span [class]="item.icon"></span>
         <span class="ml-2">{{ item.label }}</span>
       </a>

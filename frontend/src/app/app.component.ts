@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
         items: [
           {
             label: 'Dev tools',
+            target: '_blank',
             url: 'https://brequet.github.io/dev-tools/',
           },
         ],

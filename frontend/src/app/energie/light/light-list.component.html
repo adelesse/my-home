@@ -1,8 +1,8 @@
 <div class="lights">
-  <p-table [value]="lights()" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="lights()">
     <ng-template #header>
       <tr>
-        <th>Id - Nom</th>
+        <th>Nom</th>
         <th>On/Off</th>
         <th>Luminosité</th>
         <th>Couleur</th>
@@ -10,7 +10,14 @@
     </ng-template>
     <ng-template #body let-light>
       <tr>
-        <td>{{ light.id }} - {{ light.name }}</td>
+        <td>
+          @if (light.type.toLowerCase().includes('light')) {
+            <span class="pi pi-lightbulb"></span>
+          } @else {
+            <span class="pi pi-bolt"></span>
+          }
+          {{ light.name }}
+        </td>
         <td>
           @if (light.state.reachable) {
             <p-togglebutton
@@ -25,9 +32,11 @@
         </td>
         <td>
           @if (light.state.reachable && isBrightnessType(light.type)) {
-            <p-slider
+            <p-knob
               [(ngModel)]="light.state.bri"
-              class="w-56"
+              valueColor="MediumTurquoise"
+              rangeColor="SlateGray"
+              [valueTemplate]="brightnessTemplate(light.state.bri)"
               [min]="0"
               [max]="255"
               (onChange)="updateBrightness(light.id, light.state.bri)"
