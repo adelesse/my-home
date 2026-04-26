@@ -22,6 +22,8 @@
     "@angular/platform-browser": "^21.1.0",
     "@angular/platform-browser-dynamic": "^21.1.0",
     "@angular/router": "^21.1.0",
+    "@fortawesome/angular-fontawesome": "4.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@primeng/themes": "^19.0.5",
     "chart.js": "^4.5.1",
     "parse-torrent-title": "^2.1.0",

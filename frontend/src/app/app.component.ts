@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
 import { ClockComponent } from './clock/clock.component';
 import { MailComponent } from './google/mail/mail.component';
 import { TempratureComponent } from './meteo/temperature/temperature.component';
+import { MeteoIconComponent } from "./meteo/meteo-icon/meteo-icon.component";
 
 @Component({
   selector: 'app-root',
@@ -14,16 +16,17 @@ import { TempratureComponent } from './meteo/temperature/temperature.component';
   imports: [
     ButtonModule,
     Menubar,
+    FontAwesomeModule,
     RouterModule,
     TempratureComponent,
     ClockComponent,
     MailComponent,
-  ],
+    MeteoIconComponent
+],
 })
 export class AppComponent implements OnInit {
   title = 'my-home';
   items: MenuItem[] = [];
-
   constructor(private router: Router) {}
 
   ngOnInit() {
