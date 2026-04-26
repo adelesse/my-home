@@ -152,7 +152,7 @@ app.get('/mail/count', async (req, res) => {
 // ----------------------
 app.get('/api/finance', async (req, res) => {
   try {
-    const url = `http://api.marketstack.com/v2/eod?access_key=${FINANCE_KEY}&symbols=HO.XPAR`;
+    const url = `https://api.marketstack.com/v2/eod?access_key=${FINANCE_KEY}&symbols=HO.PA`;
 
     const response = await fetch(url);
     const data = await response.json();
