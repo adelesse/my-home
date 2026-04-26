@@ -27,6 +27,7 @@ import { LightService } from './light.service';
 export class LightListComponent implements OnInit {
   lights = signal<Light[]>([]);
   colorValues: { [key: string]: any } = {};
+  private readonly fallbackColor = 'WhiteSmoke';
 
   constructor(private lightService: LightService) {}
 
@@ -69,6 +70,23 @@ export class LightListComponent implements OnInit {
 
   updateColor(id: string, color: any) {
     this.lightService.updateHSB(id, color);
+  }
+
+  knobColor(lightId: string): string {
+    const color = this.colorValues[lightId];
+
+    if (!color) {
+      return this.fallbackColor;
+    }
+
+    if (typeof color.r === 'number' && typeof color.g === 'number' && typeof color.b === 'number') {
+      const r = Math.max(0, Math.min(255, Math.round(color.r)));
+      const g = Math.max(0, Math.min(255, Math.round(color.g)));
+      const b = Math.max(0, Math.min(255, Math.round(color.b)));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    return this.fallbackColor;
   }
 
   isBrightnessType(type: string) {

@@ -34,7 +34,7 @@
           @if (light.state.reachable && isBrightnessType(light.type)) {
             <p-knob
               [(ngModel)]="light.state.bri"
-              valueColor="MediumTurquoise"
+              [valueColor]="knobColor(light.id)"
               rangeColor="SlateGray"
               [valueTemplate]="brightnessTemplate(light.state.bri)"
               [min]="0"
