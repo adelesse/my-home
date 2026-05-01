@@ -6,8 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
 import { ClockComponent } from './clock/clock.component';
 import { MailComponent } from './google/mail/mail.component';
+import { MeteoIconComponent } from './meteo/meteo-icon/meteo-icon.component';
 import { TempratureComponent } from './meteo/temperature/temperature.component';
-import { MeteoIconComponent } from "./meteo/meteo-icon/meteo-icon.component";
 
 @Component({
   selector: 'app-root',
@@ -21,8 +21,8 @@ import { MeteoIconComponent } from "./meteo/meteo-icon/meteo-icon.component";
     TempratureComponent,
     ClockComponent,
     MailComponent,
-    MeteoIconComponent
-],
+    MeteoIconComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   title = 'my-home';
@@ -84,7 +84,14 @@ export class AppComponent implements OnInit {
           {
             label: 'Dev tools',
             target: '_blank',
+            icon: 'pi pi-wrench',
             url: 'https://brequet.github.io/dev-tools/',
+          },
+          {
+            label: 'Github MyHome',
+            target: '_blank',
+            icon: 'pi pi-github',
+            url: 'https://github.com/adelesse/my-home/',
           },
         ],
       },
