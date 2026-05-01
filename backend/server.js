@@ -4,6 +4,7 @@ const { google } = require('googleapis');
 const session = require('express-session');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const fetch = require('node-fetch');
 
 const app = express();
@@ -193,6 +194,38 @@ app.get('/api/linky', async (req, res) => {
 });
 
 const VIDEO_FOLDER = 'D:/Films';
+
+function getLocalNetworkIpv4() {
+  const interfaces = os.networkInterfaces();
+
+  for (const networkInterface of Object.values(interfaces)) {
+    if (!networkInterface) continue;
+
+    for (const address of networkInterface) {
+      if (
+        address.family === 'IPv4' &&
+        !address.internal &&
+        (address.address.startsWith('192.168.') ||
+          address.address.startsWith('10.') ||
+          /^172\.(1[6-9]|2\d|3[0-1])\./.test(address.address))
+      ) {
+        return address.address;
+      }
+    }
+  }
+
+  return null;
+}
+
+app.get('/api/video-base-url', (req, res) => {
+  const ip = getLocalNetworkIpv4();
+  if (!ip) {
+    return res.status(500).json({ error: 'No LAN IPv4 found' });
+  }
+
+  return res.json({ baseUrl: `http://${ip}:3000` });
+});
+
 app.get('/api/videos', (req, res) => {
   fs.readdir(VIDEO_FOLDER, (err, files) => {
     if (err) return res.status(500).send(err);

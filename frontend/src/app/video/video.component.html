@@ -14,7 +14,7 @@
 >
   <ng-template let-video #item>
     <div
-      (click)="play(video.url)"
+      (click)="play(video.url, video.titleInfos.title)"
       class="border border-surface-200 dark:border-surface-700 rounded m-2 p-4"
     >
       <div
@@ -44,7 +44,15 @@
 </p-carousel>
 
 <hr />
-
 @if (selectedVideoUrl()) {
-  <video width="640" height="360" controls [src]="selectedVideoUrl()"></video>
+  <div class="video-player">
+    <video width="640" height="360" controls [src]="selectedVideoUrl()"></video>
+    <p-button styleClass="ml-2" (click)="castSelectedVideo()">
+      <fa-icon [icon]="faChromecast" />
+    </p-button>
+
+    @if (castStatusMessage()) {
+      <p class="cast-status">{{ castStatusMessage() }}</p>
+    }
+  </div>
 }

@@ -11,9 +11,14 @@ export class VideoService {
   constructor(private http: HttpClient) {}
 
   private apiUrl = 'https://www.omdbapi.com/?apikey=';
+  private backendUrl = window.location.origin;
 
   getDefaultVideos() {
-    return this.http.get<any[]>('http://localhost:3000/api/videos');
+    return this.http.get<any[]>(`${this.backendUrl}/api/videos`);
+  }
+
+  getCastBaseUrl(): Observable<{ baseUrl: string }> {
+    return this.http.get<{ baseUrl: string }>(`${this.backendUrl}/api/video-base-url`);
   }
 
   getMovie(name: string): Observable<Movie> {

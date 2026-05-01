@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
-import { FinanceService } from './finance.service';
-import { ButtonModule } from 'primeng/button';
-import { DataViewModule } from 'primeng/dataview';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'primeng/chart';
 import { Market, MarketDay } from './finance.model';
+import { FinanceService } from './finance.service';
 
 @Component({
   selector: 'app-finance',
@@ -36,7 +35,7 @@ export class FinanceComponent implements OnInit {
 
     datas.reverse();
     const labels: string[] = datas.map((d) => new Date(d.date).toLocaleDateString('fr-FR'));
-    const closeDatas: number[] = datas.map((d) => d.close);
+    const closeDatas: number[] = datas.map((d) => d.high);
 
     this.data = {
       labels: labels,
